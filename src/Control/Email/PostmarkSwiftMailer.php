@@ -24,12 +24,6 @@ class PostmarkSwiftMailer extends SwiftMailer
         $failedRecipients = array();
         $result = $this->sendSwift($swiftMessage, $failedRecipients);
         $message->setFailedRecipients($failedRecipients);
-        if ($result->getStatusCode() == 200) {
-            return true;
-        } else {
-            $body = Convert::json2array($result->getBody());
-            throw new Exception($result->getStatusCode() . ': ' . $result->getReasonPhrase() . ': ' . $body['Message']);
-            return false;
-        }
+        return $result;
     }
 }
