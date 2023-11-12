@@ -82,11 +82,11 @@ class AlertManager
         // check overrides
         $toOverride = Email::getSendAllEmailsTo();
         if (count($toOverride) > 0) {
-            $to = $toOverride;
+            $to = $toOverride[0];
         }
         $fromOverride = Email::getSendAllEmailsFrom();
         if (count($fromOverride) > 0) {
-            $emailFrom = $fromOverride;
+            $emailFrom = $fromOverride[0];
         }
 
         // create email
