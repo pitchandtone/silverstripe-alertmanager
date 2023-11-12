@@ -79,6 +79,16 @@ class AlertManager
             $emailFrom = $config->EmailFrom;
         }
 
+        // check overrides
+        $toOverride = Email::getSendAllEmailsTo();
+        if (count($toOverride) > 0) {
+            $to = array_key_first($toOverride);
+        }
+        $fromOverride = Email::getSendAllEmailsFrom();
+        if (count($fromOverride) > 0) {
+            $emailFrom = array_key_first($fromOverride);
+        }
+
         // create email
         $email = new Email($emailFrom, $to, $subject);
         $email->setData(array());
